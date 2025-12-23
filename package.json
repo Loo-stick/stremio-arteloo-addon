@@ -1,0 +1,25 @@
+{
+  "name": "stremio-arte-addon",
+  "version": "1.0.0",
+  "description": "Addon Stremio pour Arte.tv - Streaming légal gratuit",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [
+    "stremio",
+    "addon",
+    "arte",
+    "streaming",
+    "french",
+    "documentaries"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^16.6.1",
+    "express": "^4.18.2",
+    "node-fetch": "^2.7.0",
+    "stremio-addon-sdk": "^1.6.10"
+  }
+}
