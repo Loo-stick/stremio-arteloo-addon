@@ -31,7 +31,7 @@ const manifest = {
     version: '1.0.0',
     name: 'Arte.tv',
     description: 'Streaming légal et gratuit depuis Arte.tv - Documentaires, films, séries et direct',
-    logo: 'https://static-cdn.arte.tv/guide/favicons/apple-touch-icon.png',
+    logo: 'https://raw.githubusercontent.com/Loo-stick/stremio-arteloo-addon/main/logo.png',
     background: 'https://api-cdn.arte.tv/img/v2/image/3JuyT2qo2eFCkPakJL1j3P/1920x1080',
     contactEmail: '',
     resources: ['catalog', 'meta', 'stream'],
