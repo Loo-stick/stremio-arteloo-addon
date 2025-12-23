@@ -182,6 +182,48 @@ builder.defineMetaHandler(async ({ type, id }) => {
     }
 
     try {
+        // Vérifie si c'est une collection (série)
+        const isCollection = programId.startsWith('RC-');
+
+        if (isCollection && type === 'series') {
+            // Récupère les épisodes de la collection
+            const episodes = await arte.getCollectionEpisodes(programId);
+            const video = await arte.getVideoMeta(programId);
+
+            if (!video && episodes.length === 0) {
+                return { meta: null };
+            }
+
+            // Formate les épisodes pour Stremio
+            const videos = episodes.map((ep, index) => ({
+                id: `${ID_PREFIX}${ep.programId}`,
+                title: ep.subtitle || ep.title,
+                season: 1,
+                episode: index + 1,
+                thumbnail: ep.image,
+                overview: ep.description,
+                released: ep.availability?.start ? new Date(ep.availability.start).toISOString() : undefined
+            }));
+
+            // Image principale
+            const poster = video?.images?.[0]?.url || episodes[0]?.image;
+
+            return {
+                meta: {
+                    id: id,
+                    type: 'series',
+                    name: video?.title?.split(' - ')[0] || episodes[0]?.title?.split(' - ')[0] || 'Série Arte',
+                    poster: poster,
+                    posterShape: 'regular',
+                    background: poster,
+                    description: video?.description || episodes[0]?.description,
+                    genres: ['Arte', 'Culture'],
+                    videos: videos
+                }
+            };
+        }
+
+        // Contenu simple (film, documentaire)
         const video = await arte.getVideoMeta(programId);
 
         if (!video) {
