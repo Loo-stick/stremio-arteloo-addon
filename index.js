@@ -96,7 +96,7 @@ builder.defineCatalogHandler(async ({ type, id, extra }) => {
                 break;
 
             case 'arte-docs':
-                videos = await arte.getCategory('DCA');
+                videos = await arte.getCategory('DOR');
                 break;
 
             case 'arte-series':
